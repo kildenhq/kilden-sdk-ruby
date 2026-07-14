@@ -1,0 +1,26 @@
+name: Bug report
+description: Something behaves differently than documented (or than the spec)
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Gem version and Ruby version
+      placeholder: kilden 0.1.0.alpha.1, ruby 3.3.4, puma 6.4 -w 2
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: |
+        Include the call you made and what went on the wire if you can.
+        Divergences from kilden-sdk-spec are the most valuable reports.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true

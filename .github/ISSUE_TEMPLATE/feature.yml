@@ -1,0 +1,14 @@
+name: Feature request
+description: Propose a change to the SDK
+labels: [enhancement]
+body:
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: |
+        Note: changes to observable behavior (new methods, options, wire
+        format) belong in kilden-sdk-spec first — the five server SDKs move
+        together. Ruby-only ergonomics are fair game here.
+    validations:
+      required: true
