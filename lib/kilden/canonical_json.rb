@@ -10,7 +10,12 @@ module Kilden
   # encoding/json does — the platform's reference generator.
   # @api private
   module CanonicalJSON
-    HTML_UNSAFE = { "&" => "\\u0026", "<" => "\\u003c", ">" => "\\u003e" }.freeze
+    # &, <, > plus the JS line separators U+2028/U+2029, escaped the way
+    # Go's encoding/json does (SPEC §6.1).
+    GO_ESCAPES = {
+      "&" => "\\u0026", "<" => "\\u003c", ">" => "\\u003e",
+      "\u2028" => "\\u2028", "\u2029" => "\\u2029"
+    }.freeze
 
     module_function
 
@@ -36,7 +41,7 @@ module Kilden
     end
 
     def string(value)
-      JSON.generate(value).gsub(/[&<>]/, HTML_UNSAFE)
+      JSON.generate(value).gsub(/[&<>\u2028\u2029]/, GO_ESCAPES)
     end
   end
 end
