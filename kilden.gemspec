@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
     "homepage_uri" => spec.homepage,
     "source_code_uri" => spec.homepage,
     "changelog_uri" => "#{spec.homepage}/blob/main/CHANGELOG.md",
-    "documentation_uri" => "https://docs.kilden.io",
+    "documentation_uri" => "https://kilden.io/docs",
     "bug_tracker_uri" => "#{spec.homepage}/issues",
     "rubygems_mfa_required" => "true"
   }

@@ -142,7 +142,7 @@ in CI. Behavior changes land in the spec first.
 
 ## Community
 
-- [Docs](https://docs.kilden.io)
+- [Docs](https://kilden.io/docs)
 - [Discussions](https://github.com/kildenhq/kilden-sdk-ruby/discussions)
   for questions — answers stay searchable.
 
