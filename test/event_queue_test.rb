@@ -31,3 +31,17 @@ class EventQueueTest < Minitest::Test
     assert_equal 0, queue.size
   end
 end
+
+class EventQueueEmptyTest < Minitest::Test
+  def test_empty_reflects_queue_state
+    q = Kilden::EventQueue.new(max_size: 10, flush_at: 5)
+
+    assert_predicate q, :empty?
+    q.push({ "event" => "e" })
+
+    refute_predicate q, :empty?
+    q.drain
+
+    assert_predicate q, :empty?
+  end
+end

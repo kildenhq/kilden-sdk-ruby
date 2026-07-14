@@ -51,13 +51,14 @@ class LiveBehaviorTest < Minitest::Test
     assert_equal 1, MockServer.captured_events.size
   end
 
-  def test_corrupt_response_retries
+  def test_corrupt_body_on_2xx_is_success
+    # SPEC §4.3: any 2xx is success and the body is never parsed. The armed
+    # failure answers 200 with garbage without recording, so nothing lands
+    # and nothing is re-sent.
     MockServer.post("/__mock/fail", { "times" => 1, "mode" => "corrupt" })
 
     assert_equal :ok, @sender.send_batch([EVENT])
-    # The corrupt 200 was not trusted as delivery... but the mock DID process
-    # nothing (failure replaced handling), so exactly one event landed.
-    assert_equal 1, MockServer.captured_events.size
+    assert_empty MockServer.captured_events
   end
 
   def test_cut_connection_retries

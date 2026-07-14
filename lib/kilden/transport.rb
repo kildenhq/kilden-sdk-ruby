@@ -35,7 +35,16 @@ module Kilden
         response = http.post(uri.path.empty? ? "/" : uri.path, body, headers)
         normalized = {}
         response.each_header { |k, v| normalized[k.downcase] = v }
-        Response.new(status: response.code.to_i, headers: normalized, body: response.body.to_s)
+        payload = response.body.to_s
+        # A body shorter than Content-Length is a connection cut mid-response
+        # (Net::HTTP returns the partial read silently). Malformed HTTP is a
+        # network error per SPEC §4.3, so the batch retries.
+        declared = normalized["content-length"]&.to_i
+        if declared && payload.bytesize < declared
+          return Response.new(status: 0, headers: normalized, body: payload,
+                              error: EOFError.new("response truncated at #{payload.bytesize}/#{declared} bytes"))
+        end
+        Response.new(status: response.code.to_i, headers: normalized, body: payload)
       rescue StandardError => e
         Response.new(status: 0, headers: {}, body: "", error: e)
       ensure

@@ -49,6 +49,10 @@ module Kilden
       @mutex.synchronize { @items.size }
     end
 
+    def empty?
+      size.zero?
+    end
+
     def close
       @mutex.synchronize do
         @closed = true

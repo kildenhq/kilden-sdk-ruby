@@ -41,7 +41,7 @@ class SenderTest < Minitest::Test
     sender = build_sender
     @transport.respond(status: 500, body: "boom")
     @transport.respond_network_error
-    @transport.respond(status: 200, body: "corrupt {{{")
+    @transport.respond(status: 503, body: "still booting")
 
     assert_equal :ok, sender.send_batch([EVENT])
 
@@ -51,6 +51,16 @@ class SenderTest < Minitest::Test
       assert_in_delta base, @sleeps[i] / 1.0, (base * 0.5) + 0.001,
                       "retry #{i + 1} outside jitter window"
     end
+  end
+
+  def test_corrupt_body_on_2xx_is_success
+    # SPEC §4.3: any 2xx is success — the body is never parsed.
+    sender = build_sender
+    @transport.respond(status: 200, body: "corrupt {{{")
+
+    assert_equal :ok, sender.send_batch([EVENT])
+    assert_equal 1, @transport.requests.size
+    assert_empty @sleeps
   end
 
   def test_exhaustion_drops_and_counts

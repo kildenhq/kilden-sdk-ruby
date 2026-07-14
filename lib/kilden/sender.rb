@@ -87,22 +87,13 @@ module Kilden
     end
 
     def success?(response)
-      return false unless (200..299).cover?(response.status)
-
-      # A 2xx with an unparseable body is the "corrupt response" failure mode
-      # (§4.3): treat as retryable rather than silently assuming delivery.
-      JSON.parse(response.body)
-      true
-    rescue JSON::ParserError
-      false
+      # Any 2xx is success — the response body is never parsed; the status
+      # is the whole signal (§4.3).
+      (200..299).cover?(response.status)
     end
 
     def retryable?(response)
-      return true if response.network_error?
-      return true if response.status == 429 || response.status >= 500
-
-      # 2xx landed here only when the body was corrupt.
-      (200..299).cover?(response.status)
+      response.network_error? || response.status == 429 || response.status >= 500
     end
 
     def backoff(retry_number, response)
