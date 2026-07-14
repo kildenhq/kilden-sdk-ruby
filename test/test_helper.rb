@@ -42,18 +42,25 @@ class FakeTransport
   end
 end
 
-# Captures SDK log lines for assertions.
-class CapturedLogger < Logger
-  attr_reader :io
+# Captures SDK log lines for assertions (implements the 4-method logging
+# interface the client accepts).
+class CapturedLogger
+  def initialize
+    @lines = []
+  end
 
-  def initialize(level: Logger::DEBUG)
-    @io = StringIO.new
-    super(@io, level: level)
+  %i[debug info warn error].each do |level|
+    define_method(level) { |message| @lines << "#{level}: #{message}" }
   end
 
   def output
-    @io.string
+    @lines.join("\n")
   end
+end
+
+# Silent logger for integration tests.
+class NullLog
+  %i[debug info warn error].each { |level| define_method(level) { |_message| } }
 end
 
 module ClientHelpers
