@@ -4,7 +4,7 @@
 # Kilden::IdentitySigner — everything else is internal.
 #
 # The behavior of this SDK is specified, together with the other four server
-# SDKs, in https://github.com/freshworkstudio/kilden-sdk-spec — changes that
+# SDKs, in https://github.com/kildenhq/kilden-sdk-spec — changes that
 # alter observable behavior land there first.
 module Kilden
   # Raised only at construction time (spec contract 2): bad write key,

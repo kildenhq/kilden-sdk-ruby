@@ -18,7 +18,7 @@ jobs:
       # spec checkout (no mock server needed).
       - uses: actions/checkout@v4
         with:
-          repository: freshworkstudio/kilden-sdk-spec
+          repository: kildenhq/kilden-sdk-spec
           ref: main # pin to the spec tag this SDK implements once tagged
           path: kilden-sdk-spec
       - uses: ruby/setup-ruby@v1
@@ -47,7 +47,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
-          repository: freshworkstudio/kilden-sdk-spec
+          repository: kildenhq/kilden-sdk-spec
           ref: main # pin to the spec tag this SDK implements once tagged
           path: kilden-sdk-spec
       - uses: ruby/setup-ruby@v1

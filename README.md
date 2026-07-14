@@ -5,8 +5,8 @@
 # kilden
 
 [![Gem Version](https://img.shields.io/gem/v/kilden)](https://rubygems.org/gems/kilden)
-[![ci](https://github.com/freshworkstudio/kilden-sdk-ruby/actions/workflows/ci.yml/badge.svg)](https://github.com/freshworkstudio/kilden-sdk-ruby/actions/workflows/ci.yml)
-[![license](https://img.shields.io/github/license/freshworkstudio/kilden-sdk-ruby)](LICENSE)
+[![ci](https://github.com/kildenhq/kilden-sdk-ruby/actions/workflows/ci.yml/badge.svg)](https://github.com/kildenhq/kilden-sdk-ruby/actions/workflows/ci.yml)
+[![license](https://img.shields.io/github/license/kildenhq/kilden-sdk-ruby)](LICENSE)
 
 [Kilden](https://kilden.io) is a customer data platform — product analytics,
 campaigns and session replay on one event pipeline. This is the server-side
@@ -135,7 +135,7 @@ Kilden::Client.new(
 ## Spec
 
 This SDK implements the
-[Kilden server SDK spec](https://github.com/freshworkstudio/kilden-sdk-spec)
+[Kilden server SDK spec](https://github.com/kildenhq/kilden-sdk-spec)
 (v0.1) and runs its frozen test vectors — including byte-exact identity
 tokens and the flag rollout hashing — against the spec's mock capture server
 in CI. Behavior changes land in the spec first.
@@ -143,7 +143,7 @@ in CI. Behavior changes land in the spec first.
 ## Community
 
 - [Docs](https://docs.kilden.io)
-- [Discussions](https://github.com/freshworkstudio/kilden-sdk-ruby/discussions)
+- [Discussions](https://github.com/kildenhq/kilden-sdk-ruby/discussions)
   for questions — answers stay searchable.
 
 ## License

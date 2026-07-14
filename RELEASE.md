@@ -10,7 +10,7 @@ Register the trusted publisher on rubygems.org (works before the first push,
 as a *pending* publisher): profile → OIDC → Pending trusted publishers →
 
 - RubyGem name: `kilden`
-- Repository: `freshworkstudio/kilden-sdk-ruby`
+- Repository: `kildenhq/kilden-sdk-ruby`
 - Workflow filename: `release.yml` · Environment: (leave empty)
 
 ## Cutting a release

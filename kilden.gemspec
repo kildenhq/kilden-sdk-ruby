@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = "Kilden server-side SDK for Ruby"
   spec.description = "Server-side events, identity signing and feature flags for Kilden. " \
                      "Zero runtime dependencies, fork-safe under preforking servers."
-  spec.homepage = "https://github.com/freshworkstudio/kilden-sdk-ruby"
+  spec.homepage = "https://github.com/kildenhq/kilden-sdk-ruby"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.0"
 
